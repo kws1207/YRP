@@ -56,7 +56,7 @@ contract Yrp {
                 Bet memory b = bets[currentEpoch][j];
                 if (b.bettor == msg.sender && actualPriceIndex == b.priceRangeIndex && b.claimed == false) {
                     validUserAmount += b.amount;
-                    bets[currentEpoch][i].claimed = true;
+                    bets[currentEpoch][j].claimed = true;
                 }
                 totalAmount += b.amount;
             }
@@ -65,10 +65,10 @@ contract Yrp {
                 totalBetAmountForEpoch += bets[currentEpoch][j].value;
             }
             
-            payoutAmount += totalBetAmountForEpoch * uint(validUserAmount / totalAmount);
+            payoutAmount += totalBetAmountForEpoch * uint(validUserAmount) / uint(totalAmount);
         }
 
-       
+        require(payoutAmount <= address(this).balance, "Insufficient funds in contract");
         payable(msg.sender).transfer(payoutAmount);
     }
 
