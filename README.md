@@ -70,20 +70,20 @@ pnpm run preview
 
 ### Contract
 
-Contract 1: YRP
+- Contract 1: YRP
 
 
-Contract 2: DemoHelper
+- Contract 2: DemoHelper
 
 
-Contract 3: Datastructure
+- Contract 3: Datastructure
 
 
-Abstract Contract:
+- Abstract Contract:
 
-Context:
+  Context:
 
-Ownable:
+  Ownable:
 
 
 ### Frontend: React + TypeScript + Vite
