@@ -124,6 +124,7 @@ setInitialBettings: Sets initial betting data. It initializes the betting data b
 `Ownable` is a contract that introduces the concept of an owner to a smart contract, providing access control. This contract restricts certain functions to be performed only by the owner of the contract.
 
 
+- - -
 ### Frontend: React + TypeScript + Vite
 
 - Component
