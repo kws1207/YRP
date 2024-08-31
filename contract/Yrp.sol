@@ -13,7 +13,7 @@ contract Yrp is Ownable {
 
     uint256 public baseBetValue = 0.05 ether;
     uint256 public scalingFactor = baseBetValue / 10;
-    int currentEpoch = 9; // TODO: Replace to actual epoch based on block timestamp
+    int public currentEpoch = 9; // TODO: Replace to actual epoch based on block timestamp
     uint feeConst = 5;
 
     uint public withdrawableAmount = 0;
@@ -86,6 +86,18 @@ contract Yrp is Ownable {
         require(msg.value + address(this).balance >= 30, "Not enough volume");
         DemoHelper.setXrpPriceIndices(xrpPriceIndices);
         DemoHelper.setInitialBettings(bets);
+    }
+
+    function epochBetNumber(int epoch) external view returns (uint) {
+        return bets[epoch].length;
+    }
+
+    function currentEpochBetNumber() external view returns (uint) {
+        return bets[currentEpoch].length;
+    }
+
+    function betEpochsNumber(address user) external view returns (uint) {
+        return betEpochs[user].length;
     }
 
     receive() external payable {}
