@@ -73,10 +73,10 @@ pnpm run preview
 - Contract 1: YRP
 
 
-- Contract 2: DemoHelper
+- Library 1: DemoHelper
 
 
-- Contract 3: Datastructure
+- Library 2: Datastructure
 
 
 - Abstract Contract:
