@@ -15,6 +15,7 @@ This project is a monorepo set up for [project description PPT]().
 ### Shaping the Future of XRP Markets: Collective Intelligence for Better Investment Decisions 
 
 Description:
+
 XRP Price Prediction Platform is a crowdsourcing-based price forecasting platform. By harnessing the collective intelligence of users, we visualize XRP market trends and provide investors with better information. Our goal is not to encourage speculation but to help market participants make more informed decisions.
 
 Problem:
@@ -23,6 +24,7 @@ Investor uncertainty due to high volatility in the XRP market
 Limitations and lack of reliability in existing prediction models
 Limited access to information for individual investors
 Imbalance between market psychology and technical analysis
+
 Solution:
 
 Crowdsourcing-based prediction platform: Utilizing collective intelligence to understand market trends
