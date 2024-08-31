@@ -7,8 +7,7 @@ This project is a monorepo set up for [project description PPT]().
 1. [Project Overview](#project-overview)
 2. [Installation and Setup](#installation-and-setup)
 3. [Project Structure](#project-structure)
-4. [Key Files and Directories](#key-files-and-directories)
-5. [Scripts](#scripts)
+
 
 ## Project Overview
 
@@ -66,6 +65,10 @@ pnpm run build
 # Preview the Production Build
 pnpm run preview
 ```
+
+
+
+
 
 
 
