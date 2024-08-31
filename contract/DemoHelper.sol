@@ -9,18 +9,18 @@ import "./Datastructure.sol";
 
 library DemoHelper {
 
-    function setXrpPrices(mapping(int => int) storage xrpPrices) public {
-        xrpPrices[0] = 0.540993 ether;
-        xrpPrices[1] = 0.542223 ether;
-        xrpPrices[2] = 0.546295 ether;
-        xrpPrices[3] = 0.550546 ether;
-        xrpPrices[4] = 0.549532 ether;
-        xrpPrices[5] = 0.552032 ether;
-        xrpPrices[6] = 0.558158 ether;
-        xrpPrices[7] = 0.559035 ether;
-        xrpPrices[8] = 0.559061 ether;
-        xrpPrices[9] = 0.563585 ether;
-        xrpPrices[10] = 0.564073 ether;
+    function setXrpPriceIndices(mapping(int => int) storage xrpPrices) public {
+        xrpPrices[0] = 3; 
+        xrpPrices[1] = 3; 
+        xrpPrices[2] = 4; 
+        xrpPrices[3] = 4; 
+        xrpPrices[4] = 4; 
+        xrpPrices[5] = 4; 
+        xrpPrices[6] = 5; 
+        xrpPrices[7] = 5; 
+        xrpPrices[8] = 5; 
+        xrpPrices[9] = 5; 
+        xrpPrices[10] = 5;
     }
 
     function setInitialBettings(mapping(int => DataStructs.Bet[]) storage bets) public {
