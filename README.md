@@ -86,6 +86,7 @@ Context:
 Ownable:
 
 
+### Frontend: React + TypeScript + Vite
 
 
 
