@@ -1,7 +1,9 @@
 // SPDX-License-Identifier: UNLICENSED
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.20;
 
-contract Yrp {
+import "./Ownable.sol";
+
+contract Yrp is Ownable {
     struct Bet {
         address bettor;
         int priceRangeIndex;
@@ -29,7 +31,7 @@ contract Yrp {
         require(betEpoch > currentEpoch, "Bet epoch must be greater than current epoch");
         require(betEpoch < currentEpoch + 2); // TODO: Extend b-able epoch range
 
-        int requiredValue = (int(baseBetValue) + ((currentEpoch - betEpoch) * int(scalingFactor))) * int(betAmount);
+        int requiredValue = (int(baseBetValue) + ((currentEpoch - betEpoch) * int(scalingFactor))) * int(betAmount); // TODO: Consider exponential decay
         require(msg.value == uint(requiredValue), "Incorrect betting amount.");
         
         betEpochs[msg.sender].push(betEpoch);
@@ -42,12 +44,12 @@ contract Yrp {
         }));
     }
 
-    function withdraw() external {
+    function claim() external {
         uint256 payoutAmount = 0;
 
         for (uint i = 0; i < betEpochs[msg.sender].length; i++) {
             uint256 totalBetAmountForEpoch = 0;
-            int currentEpoch = betEpochs[msg.sender][i];
+            int currentEpoch = betEpochs[msg.sender][i]; // TODO: Check if currentEpoch is completed
             int actualPriceIndex = xrpPrices[currentEpoch];
             int totalAmount = 0;
             int validUserAmount = 0;
@@ -68,8 +70,15 @@ contract Yrp {
             payoutAmount += totalBetAmountForEpoch * uint(validUserAmount) / uint(totalAmount);
         }
 
+        payoutAmount *= 0.99;
+
         require(payoutAmount <= address(this).balance, "Insufficient funds in contract");
         payable(msg.sender).transfer(payoutAmount);
+    }
+
+    function withdraw(uint amount) external onlyOwner {
+        require(amount <= address(this).balance, "Insufficient funds in contract");
+        payable(owner()).transfer(amount);
     }
 
     // Fallback function to accept ETH deposits
