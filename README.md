@@ -118,8 +118,10 @@ setInitialBettings: Sets initial betting data. It initializes the betting data b
 - Abstract Contract:
 
   - Context:
+  `Context` is an abstract contract that provides information about the environment in which a smart contract is executed. This contract is typically inherited by other contracts and is used to check the message sender (`msg.sender`) and the message data (`msg.data`).
 
-  - Ownable:
+  - Ownable: 
+Ownable is a contract that introduces the concept of an owner to a smart contract, providing access control. This contract restricts certain functions to be performed only by the owner of the contract.
 
 
 ### Frontend: React + TypeScript + Vite
