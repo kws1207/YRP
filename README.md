@@ -73,10 +73,22 @@ pnpm run preview
 - Contract 1: YRP
 
 
-- Library 1: DemoHelper
+- Library 1: Datastructure
+The DataStructs library defines a structure called Bet that is used in a betting system. This structure includes several properties (bettor, priceRangeIndex, value, amount, claimed) necessary for storing data related to bets. The code structure, defined as a library, is reusable and plays an important role in maintaining consistency of data within smart contracts.
 
+```bash
+library DataStructs {
+    struct Bet {
+        address bettor;
+        int priceRangeIndex;
+        uint value;
+        int amount;
+        bool claimed;
+    }
+}
+```
 
-- Library 2: Datastructure
+- Library 2: DemoHelper
 
 
 - Abstract Contract:
