@@ -81,6 +81,12 @@ contract Yrp is Ownable {
         payable(owner()).transfer(withdrawableAmount);
     }
 
-    // Fallback function to accept ETH deposits
+    // TODO: Remove. Only for demo
+    function initializeContract() external payable onlyOwner {
+        require(msg.value + address(this).balance >= 30, "Not enough volume");
+        DemoHelper.setXrpPriceIndices(xrpPriceIndices);
+        DemoHelper.setInitialBettings(bets);
+    }
+
     receive() external payable {}
 }

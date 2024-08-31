@@ -157,6 +157,8 @@ library DemoHelper {
             uint price_index = cur_data[1];
             uint intensity = cur_data[2];
 
+            delete bets[int(date_index)];
+
             bets[int(date_index)].push(
                 DataStructs.Bet({
                     bettor: address(0),
