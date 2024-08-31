@@ -130,7 +130,7 @@ setInitialBettings: Sets initial betting data. It initializes the betting data b
 - Component
   - Chart: Chart component uses the Plotly.js library (react-plotly.js) and D3.js for data visualization and manipulation.
 
-
+- - -
 
 
 
