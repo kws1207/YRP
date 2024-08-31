@@ -73,6 +73,7 @@ pnpm run preview
 - Contract 1: YRP
 
 
+
 - Library 1: Datastructure
 
 The DataStructs library defines a structure called Bet that is used in a betting system. This structure includes several properties (bettor, priceRangeIndex, value, amount, claimed) necessary for storing data related to bets. The code structure, defined as a library, is reusable and plays an important role in maintaining consistency of data within smart contracts.
@@ -91,6 +92,10 @@ library DataStructs {
 
 - Library 2: DemoHelper
 
+The DemoHelper library is primarily used for demo and testing purposes. It provides two main functions: one for setting XRP price indices and another for initializing betting data.
+
+setXrpPriceIndices: Initializes the XRP price indices for each epoch. This function is useful for setting price data in a test environment.
+setInitialBettings: Sets initial betting data. It initializes the betting data based on the price range and intensity for each epoch.
 
 - Abstract Contract:
 
