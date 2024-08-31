@@ -25,8 +25,8 @@ This project is designed to achieve [project goals and objectives]. It provides 
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/your-repo-name.git
-cd your-repo-name
+git clone https://github.com/kws1207/YRP.git
+cd YRP
 
 # Install dependencies
 pnpm install
