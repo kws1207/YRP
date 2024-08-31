@@ -81,9 +81,9 @@ pnpm run preview
 
 - Abstract Contract:
 
-  Context:
+  - Context:
 
-  Ownable:
+  - Ownable:
 
 
 ### Frontend: React + TypeScript + Vite
