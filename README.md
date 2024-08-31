@@ -1,4 +1,4 @@
-# YRP
+# YRP Project for Ripple 
 
 This project is a monorepo set up for [project description](). 
 
@@ -27,12 +27,35 @@ This project is designed to achieve [project goals and objectives]. It provides 
 # Clone the repository
 git clone https://github.com/yourusername/your-repo-name.git
 cd your-repo-name
-```
 
 # Install dependencies
-
-```bash 
 pnpm install
+```
+
+### Running the Development Server
+
+```bash
+pnpm run dev
+```
+The development server will start, and you can view the application at http://localhost:3000.
+
+### Production Build
+
+```bash
+# Generate a Production Build
+pnpm run build
+
+# Preview the Production Build
+pnpm run preview
+```
+
+
+
+
+
+
+
+
 
 
 
