@@ -1,43 +1,40 @@
 import Plot from "react-plotly.js";
 import * as d3 from "d3";
-import { DataPoint } from "../types";
+import { DataPoint, XrpPrices } from "../types";
 
-const width = 1400;
+const width = 800;
 
-export default function Chart({ data }: { data: DataPoint[] }) {
+export default function Chart({
+  data,
+  xrpPrices,
+  setPriceRangeIndex,
+}: {
+  data: DataPoint[];
+  xrpPrices: XrpPrices;
+  setPriceRangeIndex: (index: number) => void;
+}) {
   const xSumZ = d3.rollup(
     data,
     (v) => d3.sum(v, (d) => d.Z),
     (d) => d.X
   );
 
-  const minDate =
-    d3
-      .min(data, (d: DataPoint) => d3.timeParse("%Y-%m-%d")(d.X))
-      ?.toISOString() || new Date().toISOString();
-  const maxDate =
-    d3
-      .max(data, (d: DataPoint) => d3.timeParse("%Y-%m-%d")(d.X))
-      ?.toISOString() || new Date().toISOString();
-  const futureDate = d3.timeDay.offset(new Date(maxDate), 180).toISOString();
+  const minX = 0;
+  const maxX = 19;
 
-  const pastDateRange = data
-    .filter((d) => d.Type === "Past" && d.Z === 10)
-    .map((d) => d.X);
-  const pastLineY = data
-    .filter((d) => d.Type === "Past" && d.Z === 10)
-    .map((d) => d.Y);
+  const nonZeroXrpPrices = Object.fromEntries(
+    Object.entries(xrpPrices).filter(([, value]) => value !== 0)
+  );
 
   return (
     <div className="flex flex-col">
       <Plot
         onClick={(data) => {
-          let pts = "";
-          for (let i = 0; i < data.points.length; i++) {
-            pts =
-              "x = " + data.points[i].x + "\ny = " + data.points[i].y + "\n\n";
+          if (data.points[0].x !== 10) {
+            alert("You can only bet on epoch 10 for the demo.");
+          } else {
+            setPriceRangeIndex(Number(data.points[0].y));
           }
-          alert("Closest point clicked:\n\n" + pts);
         }}
         config={{
           scrollZoom: false,
@@ -59,10 +56,6 @@ export default function Chart({ data }: { data: DataPoint[] }) {
               size: 25,
               color: data.map((d) => d.Z),
               colorscale: "Viridis",
-              colorbar: {
-                title: "Intensity",
-                tickvals: d3.range(0, 10),
-              },
               cmin: 0,
               cmax: 10,
             },
@@ -70,8 +63,10 @@ export default function Chart({ data }: { data: DataPoint[] }) {
             name: "Data Points",
           },
           {
-            x: pastDateRange,
-            y: pastLineY,
+            x: Object.keys(nonZeroXrpPrices)
+              .slice(0, 10)
+              .map((key) => Number(key)),
+            y: Object.values(nonZeroXrpPrices).slice(0, 10),
             mode: "lines+markers",
             line: { color: "red", width: 2 },
             marker: { size: 8, color: "red" },
@@ -81,19 +76,17 @@ export default function Chart({ data }: { data: DataPoint[] }) {
         ]}
         layout={{
           paper_bgcolor: "rgba(0,0,0,0)",
-          title: "Past Data and Future Prediction",
           height: 600,
           width: width + 40,
           showlegend: false,
           xaxis: {
-            type: "date",
-            range: [minDate, futureDate],
+            type: "linear",
+            range: [minX, maxX],
             showgrid: false,
             fixedrange: true,
           },
           yaxis: {
-            title: "Value",
-            range: [0.5, 10.5],
+            range: [49.5, 60.5],
             dtick: 1,
             showgrid: false,
             fixedrange: true,
@@ -101,9 +94,9 @@ export default function Chart({ data }: { data: DataPoint[] }) {
           shapes: [
             {
               type: "line",
-              x0: "2024-01-01",
+              x0: 10,
               y0: 0,
-              x1: "2024-01-01",
+              x1: 10,
               y1: 1,
               xref: "x",
               yref: "paper",
@@ -116,7 +109,7 @@ export default function Chart({ data }: { data: DataPoint[] }) {
           ],
           annotations: [
             {
-              x: minDate,
+              x: minX,
               y: 10.5,
               text: "Past",
               showarrow: false,
@@ -125,7 +118,7 @@ export default function Chart({ data }: { data: DataPoint[] }) {
               yref: "y",
             },
             {
-              x: futureDate,
+              x: maxX,
               y: 10.5,
               text: "Future (Predicted)",
               showarrow: false,
@@ -134,7 +127,7 @@ export default function Chart({ data }: { data: DataPoint[] }) {
               yref: "y",
             },
             {
-              x: "2023-01-01",
+              x: 5,
               y: 10.5,
               text: "Past",
               showarrow: false,
@@ -143,7 +136,7 @@ export default function Chart({ data }: { data: DataPoint[] }) {
               yref: "y",
             },
             {
-              x: "2024-07-01",
+              x: 15,
               y: 10.5,
               text: "Future (Predicted)",
               showarrow: false,
@@ -172,7 +165,7 @@ export default function Chart({ data }: { data: DataPoint[] }) {
             y: Array.from(xSumZ.values()),
             marker: { color: "lightskyblue" },
             type: "bar",
-            name: "Sum(Z) by Date",
+            name: "Sum(Z) by X",
           },
         ]}
         layout={{
@@ -181,19 +174,16 @@ export default function Chart({ data }: { data: DataPoint[] }) {
           width: width,
           showlegend: false,
           xaxis: {
-            title: "Date",
-            type: "date",
-            range: [minDate, futureDate],
+            type: "linear",
+            range: [minX, maxX],
           },
-          yaxis: {
-            title: "Sum(Z)",
-          },
+          yaxis: {},
           shapes: [
             {
               type: "line",
-              x0: "2024-01-01",
+              x0: 10,
               y0: 0,
-              x1: "2024-01-01",
+              x1: 10,
               y1: 1,
               xref: "x",
               yref: "paper",
