@@ -1,6 +1,6 @@
 # YRP: Your Ripple Price 
 
-This project is a monorepo set up for [project description PPT](). 
+This project is a monorepo set up for [project description PPT](https://docs.google.com/presentation/d/1q9iWZujmmxZeiKo0U4y-2wbmzxuDIh1EcC13SUXxj9s/edit#slide=id.g2f808124eae_0_35). 
 
 ## Table of Contents
 
