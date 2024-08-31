@@ -1,6 +1,6 @@
 # YRP
 
-This project is a monorepo set up for [project description]. 
+This project is a monorepo set up for [project description](). 
 
 ## Table of Contents
 
@@ -9,8 +9,6 @@ This project is a monorepo set up for [project description].
 3. [Project Structure](#project-structure)
 4. [Key Files and Directories](#key-files-and-directories)
 5. [Scripts](#scripts)
-6. [Contributing](#contributing)
-7. [License](#license)
 
 ## Project Overview
 
