@@ -76,17 +76,17 @@ The `Yrp` smart contract implements a prediction betting system based on XRP pri
 
 Descriptions of the main functions are as follows:
 
-- **Betting Function (`bet` function):**
+**Betting Function (`bet` function):**
 
   Users can place bets on specific epochs and price ranges.  
   The function verifies the betting amount and conditions, records the bet data, and calculates the fees.
 
-- **Claim Earnings Function (`claim` function):**
+**Claim Earnings Function (`claim` function):**
 
   Users can claim their earnings based on the results of their bets.  
   The function iterates through all bets of each user to calculate the payout and transfers only the unclaimed earnings.
 
-- **Owner Withdrawal Function (`withdraw` function):**
+**Owner Withdrawal Function (`withdraw` function):**
 
   The contract owner can withdraw the accumulated funds in the contract.  
   The function uses the `onlyOwner` modifier to restrict access so that only the owner can call this function.
